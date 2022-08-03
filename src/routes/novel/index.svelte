@@ -7,7 +7,6 @@
 </script>
 
 <script>
-    import { SRC_URL } from "$lib/variables.js";
     import Header from "$lib/Header.svelte";
 
     export let title = "My Novel Collection";
@@ -29,7 +28,7 @@
             >
                 <div class="aspect-w-2 aspect-h-3 w-full overflow-hidden rounded-md">
                     <img
-                        src="{SRC_URL}{novel.attributes.cover.data.attributes.url}"
+                        src="{novel.attributes.cover.data.attributes.url}"
                         alt="Cover of {novel.attributes.title}"
                     >
                 </div>

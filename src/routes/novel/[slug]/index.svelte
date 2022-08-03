@@ -18,7 +18,6 @@
 </script>
 
 <script>
-    import { SRC_URL } from "$lib/variables.js";
     import SvelteMarkdown from "svelte-markdown";
     import Time from "svelte-time";
     import Header from "$lib/Header.svelte";
@@ -41,7 +40,7 @@
     <div class="lg:grid lg:grid-auto-rows-min lg:grid-cols-12 lg:gap-x-4 pb-4 border-b-2 border-gray-700 dark:border-gray-200">
         <div class="lg:col-span-5 lg:col-start-1 lg:row-span-3 lg:row-start-1">
             <img
-                src="{SRC_URL}{novelData.cover}"
+                src="{novelData.cover}"
                 alt="Cover of {title}"
                 class="cover"
             >
