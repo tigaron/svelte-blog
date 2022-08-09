@@ -23,17 +23,17 @@
     <div class="grid grid-cols-2 gap-y-10 gap-x-6 lg:grid-cols-4 md:grid-cols-3 xl:gap-x-8">
         {#each mangas as manga}
             <a
-                href="/manga/{manga.slug}"
+                href="/manga/{manga["Provider-Type"].split("-").shift()}?slug={manga.Slug}"
                 class="transform rounded-md transition duration-500 hover:scale-105"
             >
                 <div class="aspect-w-2 aspect-h-3 w-full overflow-hidden rounded-md">
                     <img
-                        src="{manga.cover}"
-                        alt="Cover of {manga.title}"
+                        src="{manga.Cover}"
+                        alt="Cover of {manga.Title}"
                     >
                 </div>
                 <div class="min-h-16 py-4">
-                    <h3 class="text-center text-sm font-bold hover:text-primary-700 md:text-base">{manga.title}</h3>
+                    <h3 class="text-center text-sm font-bold hover:text-primary-700 md:text-base">{manga.Title}</h3>
                 </div>
             </a>
         {/each}

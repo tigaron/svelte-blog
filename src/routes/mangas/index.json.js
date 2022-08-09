@@ -18,17 +18,18 @@ export const GET = async ({ url }) => {
 	const mangaData = [];
 	try {
 		for await (const slug of mangaSlugs) {
-			const response = await fetch(
-				`${API_URL}/scrape/manga/${sourceName}/${slug}`,
+			let manga;
+			console.log(`${API_URL}/fetch/manga/${sourceName}/${slug}`);
+			const fetchResponse = await fetch(
+				`${API_URL}/fetch/manga/${sourceName}/${slug}`,
 				options
 			);
-			const manga = await response.json();
-			manga.slug = `${sourceName}?slug=${slug}`;
-			mangaData.push(manga);
+			manga = await fetchResponse.json();
+			mangaData.push(manga.data);
 		}
 		return {
 			status: 200,
-			body: JSON.stringify(mangaData),
+			body: JSON.stringify(mangaData.filter(x => x)),
 		};
 	} catch (error) {
 		return {

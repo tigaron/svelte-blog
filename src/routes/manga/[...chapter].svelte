@@ -7,8 +7,8 @@
         return {
             props: {
                 data : {
-                    title: result.title,
-                    img: result.img
+                    Title: result.Title,
+                    Content: result.Content
                 }
             }
         }
@@ -22,21 +22,21 @@
     let chapterData = data;
 
     export let type = "post";
-    export let title = chapterData.title;
+    export let title = chapterData.Title;
 
     $: {
         chapterData = data;
-        title = chapterData.title;
+        title = chapterData.Title;
     }
 </script>
 
 <Header title={title} type={type}/>
 
 <main class="main space-y-2 -mt-4">
-    {#each chapterData.img as content}
+    {#each chapterData.Content as img}
         <img
             class="w-full"
-            src={content}
+            src={img}
             alt={title}>
     {/each}
 </main>

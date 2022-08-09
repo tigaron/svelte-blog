@@ -17,7 +17,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 pt-6">
             <div>
                 <h1 class="pb-6 text-3xl font-extrabold leading-9 tracking-tight md:text-4xl md:leading-10 lg:text-6xl lg:leading-14">Hi, I'm Nike <span class="text-primary-500">Suputra</span></h1>
-                <h2 class="text-lg">Welcome to my blog! - Thoughts from a wandering mind. I am a software engineer by profession and an urban planner by training. In my free time, I like developing <a class="text-primary-500" href="/project">side-projects</a> and reading <a class="text-primary-500" href="/novel">novels</a>. Have a good read!</h2>
+                <h2 class="text-lg">Welcome to my blog! - Thoughts from a wandering mind. I'm a Software Developer and occasional Cloud Engineer, currently working for a digital agency Four Leaves Studio. In my free time, I love building <a class="text-primary-500" href="/project">softwares</a>, automating my workflows, reading <a class="text-primary-500" href="/novel">novels</a> and <a class="text-primary-500" href="/manga">comics</a>. Have a good read!</h2>
             </div>
             <div class="flex items-center justify-center mx-auto">
                 <div class="p-6 bg-gray-200 dark:bg-gray-800 w-full h-full max-w-sm rounded-md">

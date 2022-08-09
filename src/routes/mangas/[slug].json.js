@@ -11,14 +11,23 @@ export const GET = async ({ url, params }) => {
 		},
 	};
 	try {
-		const response = await fetch(
-            `${API_URL}/scrape/manga/${source}/${slug}`,
-            options
-        );
-        const manga = await response.json();
+		const mangaRes = await fetch(
+			`${API_URL}/fetch/manga/${source}/${slug}`,
+			options
+		);
+		const manga = await mangaRes.json();
+		const chaptersRes = await fetch(
+			`${API_URL}/fetch/chapters/${source}/${slug}`,
+			options
+		);
+		const chapters = await chaptersRes.json();
+		manga.data.Chapters = chapters.data.sort(
+			(a, b) =>
+				parseInt(a.Slug.split("-").pop()) - parseInt(b.Slug.split("-").pop())
+		);
 		return {
 			status: 200,
-			body: JSON.stringify(manga),
+			body: JSON.stringify(manga.data),
 		};
 	} catch (error) {
 		return {

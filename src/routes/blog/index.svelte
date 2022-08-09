@@ -31,7 +31,7 @@
                     <div class="space-y-2 xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
                         <dl class="flex">
                             <dt class="sr-only">Author</dt>
-                            <dd class="tag-item text-base font-medium leading-6">
+                            <dd class="tag-item text-base font-medium leading-6 capitalize">
                                 {post.attributes.author.data.attributes.username}
                             </dd>
                             <dt class="tag-item sr-only">Published on</dt>
