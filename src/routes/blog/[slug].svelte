@@ -65,7 +65,7 @@
 <div class="mx-auto max-w-3xl -mt-2 px-6 sm:px-6 xl:max-w-5xl xl:px-0">
     <dl class="flex justify-center border-b pb-2">
         <dt class="sr-only">Author</dt>
-        <dd class="tag-item text-base font-medium leading-6">
+        <dd class="tag-item text-base font-medium leading-6 capitalize">
             {postData.author}
         </dd>
         <dt class="tag-item sr-only">Published on</dt>

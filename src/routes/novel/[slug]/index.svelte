@@ -55,7 +55,7 @@
 
     <section class="space-y-2">
         <h3 class="novel-head">Latest Chapters</h3>
-        <div class="flex flex-col sm:grid sm:grid-cols-2 space-x-0 sm:gap-x-10 space-y-2">
+        <div class="flex flex-col sm:grid sm:grid-cols-2 sm:gap-x-10 gap-y-2">
             {#each novelData.chapters as chapter}
                 <a
                     href="/novel/{novelData.slug}/{chapter.attributes.slug}"
