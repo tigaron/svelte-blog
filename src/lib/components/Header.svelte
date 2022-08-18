@@ -1,5 +1,4 @@
 <script lang="ts">
-	import cover from '$lib/assets/mabs-cover.png';
 	import Hero from '$lib/components/Blog/Hero.svelte'
 	export let title: string;
 	export let isBlog: Boolean;
@@ -9,7 +8,6 @@
 	<title>{title}</title>
 	<meta name="description" content="Four Leaves Studio - {title}">
 	<meta property="og:title" content="{title}">
-	<meta property="og:image" content={cover}>
 </svelte:head>
 
 <header class="mt-20">
