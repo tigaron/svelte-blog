@@ -1,31 +1,6 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-
-	type post = {
-		attributes: {
-			title: String;
-			slug: String;
-			excerpt: String;
-			publishedAt: String;
-			tags: { data: Array<tag> };
-			author: { data: author };
-		};
-	};
-
-	type author = {
-		attributes: {
-			username: String;
-			photo: { data: { attributes: { url: String } } };
-		};
-	};
-
-	type tag = {
-		attributes: {
-			title: String;
-			slug: String;
-		};
-	};
-
+	import type { post } from '$lib/utils/post.type';
 	export let data: { data: Array<post> };
 	let { data: blogPosts } = data;
 </script>
