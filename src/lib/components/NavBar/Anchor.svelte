@@ -7,7 +7,7 @@
 <li>
 	<a
 		href={href}
-		class="block py-2 pr-4 pl-3 md:p-0 font-medium {current ? 'text-orange-700' : 'text-gray-500 hover:text-gray-900 dark:hover:text-white'}"
+		class="block py-2 pr-4 pl-3 md:p-0 font-medium {current ? 'text-gray-900 dark:text-white' : 'text-gray-500 hover:text-gray-900 dark:hover:text-white'}"
 	>
 		{label}
 	</a>

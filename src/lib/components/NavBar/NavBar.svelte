@@ -2,7 +2,8 @@
 	import { onMount } from 'svelte';
 	import { beforeNavigate } from '$app/navigation';
 	import { page } from '$app/stores';
-
+	import white from '$lib/assets/fls-logo-white.png';
+	import black from '$lib/assets/fls-logo-black.png';
 	import Anchor from './Anchor.svelte';
 	import DarkMode from './DarkMode.svelte';
 	import Dropdown from './Dropdown.svelte';
@@ -49,7 +50,7 @@
 		<div class="container flex flex-wrap justify-between items-center mx-auto">
 			<a href="/" class="flex items-center">
 				<img
-					src="/fls-logo-{darkMode ? 'white' : 'black'}.png"
+					src={darkMode ? white : black}
 					class="mr-3 h-6 sm:h-9"
 					alt="Four Leaves Studio Logo"
 				/>
