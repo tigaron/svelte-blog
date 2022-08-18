@@ -1,29 +1,24 @@
-/* Write your global styles here, in PostCSS syntax */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .main {
-    @apply max-w-3xl xl:max-w-5xl py-2 px-6 xl:px-0 mx-auto;
-}
-
-a:hover {
-    @apply hover:text-primary-700 dark:hover:text-primary-700;
+	@apply min-h-screen max-w-3xl xl:max-w-5xl py-2 px-6 xl:px-0 mx-auto mt-20;
 }
 
 .tag-item + .tag-item::before {
-    content: "\02022";
-    @apply px-2 py-0;
+	content: '\02022';
+	@apply px-2 py-0;
 }
 
 .cover {
-    @apply w-full max-w-xs h-auto mx-auto rounded-md drop-shadow-md;
+	@apply w-full max-w-xs h-auto mx-auto rounded-md drop-shadow-md;
 }
 
 .blog-posts {
-    @apply pb-6 font-extrabold text-2xl tracking-tight sm:text-3xl md:text-5xl border-b border-gray-700 dark:border-gray-200;
+	@apply pb-6 font-extrabold text-2xl tracking-tight sm:text-3xl md:text-5xl border-b border-gray-700 dark:border-gray-200;
 }
 
 .novel-head {
-    @apply text-lg sm:text-xl md:text-2xl font-bold tracking-tight;
+	@apply text-lg sm:text-xl md:text-2xl font-bold tracking-tight;
 }
