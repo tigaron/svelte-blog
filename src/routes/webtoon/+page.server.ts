@@ -18,6 +18,7 @@ export async function load() {
 		const MangaList = new Set();
 		const response = await fetch(`https://${rapidapi.host}/fetch/manga-list/${item}`, options);
 		const { data } = await response.json();
+		if (!data) throw error(404, 'Not found');
 		for await (const { MangaTitle, MangaCover, EntrySlug } of data) {
 			if (!MangaCover) continue;
 			let Thumbnail;
@@ -27,8 +28,5 @@ export async function load() {
 		}
 		ProviderList.set(`${item}`, MangaList)
 	}
-	if (ProviderList.size) {
-		return mapToObject(ProviderList);
-	}
-	throw error(404, 'Not found');
+	return mapToObject(ProviderList);
 }
