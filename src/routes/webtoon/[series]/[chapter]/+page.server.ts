@@ -17,7 +17,10 @@ export async function load({ url, params }) {
 
 	const response = await fetch(`https://${rapidapi.host}/fetch/chapter/${provider}/${series}/${chapter}`, options);
 	const { data: ChapterData } = await response.json();
+	if (!ChapterData) throw error(404, 'Not found');
+	
 	const { ChapterTitle, ChapterContent } = ChapterData;
+	const ChapterOrder = chapter.match(/\d+/);
 	const images = new Set();
 	for await (const element of ChapterContent) {
 		let img;
@@ -27,11 +30,13 @@ export async function load({ url, params }) {
 	}
 	
 	const result = new Map([
+		["Provider", provider],
+		["MangaSlug", series],
+		["ChapterSlug", chapter],
 		["ChapterTitle", ChapterTitle],
 		["ChapterContent", images],
+		["PrevChapter", `${series}-chapter-${parseInt(ChapterOrder) - 1}?provider=${provider}`],
+		["NextChapter", `${series}-chapter-${parseInt(ChapterOrder) + 1}?provider=${provider}`],
 	]);
-	if (result.size) {
-		return mapToObject(result);
-	}
-	throw error(404, 'Not found');
+	return mapToObject(result);
 }
