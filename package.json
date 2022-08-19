@@ -43,6 +43,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"create-hmac": "^1.1.7",
 		"graphql": "^16.6.0",
 		"graphql-request": "^4.3.0"
 	}
