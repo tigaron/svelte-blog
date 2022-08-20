@@ -3,4 +3,6 @@
 	import { page } from '$app/stores';
 </script>
 
-<Header title="{$page.status}: {$page.error.message}" isBlog={false} />
+<div class="main">
+	<Header title="{$page.status}: {$page.error.message}" isBlog={false} />
+</div>

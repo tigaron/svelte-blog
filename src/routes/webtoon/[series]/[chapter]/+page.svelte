@@ -12,7 +12,7 @@
 
 <div on:click={toogleSettings} class="w-full">
 	<Header title={data.ChapterTitle} isBlog={false} />
-	<main class="main">
+	<main class="min-h-screen max-w-2xl py-2 px-6 xl:px-0 mx-auto">
 		{#each data.ChapterContent as img}
 		<Image src={img} alt={data.ChapterTitle} />
 	{/each}

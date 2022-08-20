@@ -10,7 +10,7 @@
 	<meta property="og:title" content="{title}">
 </svelte:head>
 
-<header class="mt-20">
+<header class="mt-20 max-w-3xl xl:max-w-5xl mx-auto">
 	{#if isBlog}
 		<Hero />
 	{:else}
