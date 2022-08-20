@@ -4,7 +4,7 @@ import gqlClient from "$lib/configs/gqlClient";
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }: { params: { slug: string } }) {
-	const slug = params.slug;
+	const { slug } = params;
 	const query = gql`
 	query {
 		findSlug(modelName: "post", slug: "${slug}") {
