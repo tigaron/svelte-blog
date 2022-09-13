@@ -2,6 +2,11 @@ export const strapi = {
 	graphql: import.meta.env.VITE_STRAPI_GRAPHQL
 };
 
+export const ghost = {
+	url: import.meta.env.VITE_GHOST_URL,
+	key: import.meta.env.VITE_GHOST_KEY
+};
+
 export const rapidapi = {
 	host: import.meta.env.VITE_RAPIDAPI_HOST,
 	key: import.meta.env.VITE_RAPIDAPI_KEY
