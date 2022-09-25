@@ -12,21 +12,19 @@ export async function load() {
 			"X-RapidAPI-Host": rapidapi.host,
 		},
 	};
-	const provider = ['alpha', 'asura', 'flame', 'luminous', 'realm']
-	const ProviderList = new Map();
-	for await (const item of provider) {
+	const providers = ['alpha', 'asura', 'flame', 'luminous', 'realm', 'omega']
+	const AllSeries = new Map();
+	for await (const provider of providers) {
 		const MangaList = new Set();
-		const response = await fetch(`https://${rapidapi.host}/fetch/manga-list/${item}`, options);
+		const response = await fetch(`https://${rapidapi.host}/series/?provider=${provider}`, options);
 		const { data } = await response.json();
-		if (!data) throw error(404, 'Not found');
-		for await (const { MangaTitle, MangaCover, EntrySlug } of data) {
+		if (!data.count) throw error(404, 'Not found');
+		for await (const { MangaTitle, MangaCover, _id: EntrySlug } of data.series) {
 			if (!MangaCover) continue;
-			let Thumbnail;
-			if (item === 'realm') Thumbnail = MangaCover;
-			else Thumbnail = convertImage(MangaCover, "resize:fit:200", "webp");
+			const Thumbnail = /(jpg|jpeg|png)$/.test(MangaCover) ? convertImage(MangaCover, "resize:fit:200", "webp") : MangaCover;
 			MangaList.add({ MangaTitle, Thumbnail, EntrySlug });
 		}
-		ProviderList.set(`${item}`, MangaList)
+		AllSeries.set(`${provider}`, MangaList)
 	}
-	return mapToObject(ProviderList);
+	return mapToObject(AllSeries);
 }

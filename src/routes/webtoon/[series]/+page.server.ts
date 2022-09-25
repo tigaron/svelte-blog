@@ -15,20 +15,17 @@ export async function load({ url, params }) {
 		},
 	};
 
-	const mangaRes = await fetch(`https://${rapidapi.host}/fetch/manga/${provider}/${series}`, options);
+	const mangaRes = await fetch(`https://${rapidapi.host}/series/${series}/?provider=${provider}`, options);
 	const { data: MangaData  } = await mangaRes.json();
 	if (!MangaData) throw error(404, 'Not found');
-	const { MangaTitle, MangaCover, MangaSynopsis, EntrySlug: MangaSlug } = MangaData;
-	let Thumbnail;
-	if (provider === 'realm') Thumbnail = MangaCover;
-	else Thumbnail = convertImage(MangaCover, "resize:fit:600", "webp");
+	const { MangaTitle, MangaCover, MangaSynopsis, _id: MangaSlug } = MangaData;
+	const Thumbnail = /(jpg|jpeg|png)$/.test(MangaCover) ? convertImage(MangaCover, "resize:fit:600", "webp") : MangaCover;
 
-	const chapterRes = await fetch(`https://${rapidapi.host}/fetch/chapter-list/${provider}/${series}`, options);
+	const chapterRes = await fetch(`https://${rapidapi.host}/series/${series}/chapters/?provider=${provider}`, options);
 	const ChapterList = new Set();
 	const { data: ChaptersData } = await chapterRes.json();
-	if (!ChaptersData) throw error(404, 'Not found');
-	for await (const { ChapterNumber, ChapterDate, EntrySlug: ChapterSlug } of ChaptersData) {
-		const ChapterOrder = ChapterSlug.match(/\d+/);
+	if (!ChaptersData.count) throw error(404, 'Not found');
+	for await (const { ChapterNumber, ChapterDate, _id: ChapterSlug, ChapterOrder} of ChaptersData.series) {
 		ChapterList.add({ ChapterNumber, ChapterOrder, ChapterSlug, ChapterDate });
 	}
 
@@ -38,7 +35,7 @@ export async function load({ url, params }) {
 		["MangaSlug", MangaSlug],
 		["MangaSynopsis", MangaSynopsis],
 		["Thumbnail", Thumbnail],
-		["ChapterList", Array.from(ChapterList).sort((a,b) => parseInt(b.ChapterOrder) - parseInt(a.ChapterOrder))]
+		["ChapterList", Array.from(ChapterList).sort((a, b) => b.ChapterOrder - a.ChapterOrder)]
 	]);
 	return mapToObject(result);
 }

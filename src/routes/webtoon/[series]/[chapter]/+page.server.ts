@@ -15,17 +15,15 @@ export async function load({ url, params }) {
 		},
 	};
 
-	const response = await fetch(`https://${rapidapi.host}/fetch/chapter/${provider}/${series}/${chapter}`, options);
+	const response = await fetch(`https://${rapidapi.host}/series/${series}/chapter/${chapter}/?provider=${provider}`, options);
 	const { data: ChapterData } = await response.json();
 	if (!ChapterData) throw error(404, 'Not found');
 	
-	const { ChapterTitle, ChapterContent } = ChapterData;
+	const { ChapterTitle, ChapterContent, ChapterNextSlug, ChapterPrevSlug } = ChapterData;
 	const ChapterOrder = chapter.match(/\d+/);
 	const images = new Set();
 	for await (const element of ChapterContent) {
-		let img;
-		if (provider === 'realm') img = element;
-		else img = convertImage(element, "resize:fit:600", "webp");
+		const img = /(jpg|jpeg|png)$/.test(element) ? convertImage(element, "resize:fit:600", "webp") : element;
 		images.add(img);
 	}
 	
@@ -35,8 +33,8 @@ export async function load({ url, params }) {
 		["ChapterSlug", chapter],
 		["ChapterTitle", ChapterTitle],
 		["ChapterContent", images],
-		["PrevChapter", `${series}-chapter-${parseInt(ChapterOrder) - 1}?provider=${provider}`],
-		["NextChapter", `${series}-chapter-${parseInt(ChapterOrder) + 1}?provider=${provider}`],
+		["PrevChapter", ChapterPrevSlug ? `${ChapterPrevSlug}/?provider=${provider}` : null],
+		["NextChapter", ChapterNextSlug ? `${ChapterNextSlug}/?provider=${provider}` : null],
 	]);
 	return mapToObject(result);
 }

@@ -7,6 +7,7 @@
 		{ label: 'Flame Scans', value: 3, props: { provider: 'flame', data: data.flame } },
 		{ label: 'Luminous Scans', value: 4, props: { provider: 'luminous', data: data.luminous } },
 		{ label: 'Realm Scans', value: 5, props: { provider: 'realm', data: data.realm } },
+		{ label: 'Omega Scans', value: 6, props: { provider: 'omega', data: data.omega } },
 	];
 	export let activeTabValue = 2;
 	function changeActiveTab(tabValue: number) {
